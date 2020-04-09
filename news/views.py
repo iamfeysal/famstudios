@@ -26,10 +26,11 @@ def latest_view(request):
 
 def search_view(request):
     r_search = request.POST['search']
-    posts = Post.objects.filter(
-        Q(published=True) & (Q(title__icontains=r_search)
-                             | Q(content__icontains=r_search))).order_by(
-        '-created_on')
+    posts = Post.objects.filter(Q(
+            title__icontains=r_search) | Q(
+            slug__icontains=r_search) | Q(
+            description__icontains=r_search)
+                                )
     data = {'posts': posts}
 
     return render(request, 'search.html', data)
