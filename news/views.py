@@ -5,7 +5,7 @@ from django.db.models import Q
 
 
 def archive_view(request):
-    posts = Post.objects.filter(published=True).order_by('-created_on')
+    posts = Post.published.all()
     data = {'posts': posts}
     return render(request, 'archive.html', data)
 
@@ -18,6 +18,7 @@ def post_detail(request, id):
 
 def latest_view(request):
     posts = Post.published.all()
+    print(posts)
     data = {'posts': posts}
     return render(request, 'index.html', data)
 
