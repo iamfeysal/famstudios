@@ -4,14 +4,18 @@ from django.utils import timezone
 from django.db import models
 from taggit.managers import TaggableManager
 
+
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super(PublishedManager, self).get_queryset().filter(
+            status='published')
+
+
 class Category(models.Model):
     name = models.CharField(db_index=True, max_length=150, primary_key=True)
 
     def __str__(self):
         return self.name
-
-
-
 
 
 class Post(models.Model):
