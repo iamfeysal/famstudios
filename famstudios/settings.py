@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'debug_toolbar',
 ]
-
+CKEDITOR_UPLOAD_PATH = "uploads/"  # < here
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
