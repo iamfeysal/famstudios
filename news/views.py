@@ -17,7 +17,7 @@ def post_detail(request, id):
 
 
 def latest_view(request):
-    posts = Post.objects.filter(published=True).order_by('-created_on')[:4]
+    posts = Post.objects.filter(publish=True).order_by('-created_on')
     data = {'posts': posts}
     return render(request, 'index.html', data)
 
