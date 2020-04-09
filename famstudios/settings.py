@@ -36,11 +36,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # local apps
+    'news',
+
     # Third party-apps
     'ckeditor',
     'ckeditor_uploader',
     'bootstrap4',
     'debug_toolbar',
+
 ]
 CKEDITOR_UPLOAD_PATH = "uploads/"  # < here
 MIDDLEWARE = [

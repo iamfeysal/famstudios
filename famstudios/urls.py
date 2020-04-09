@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),  # < here
     path('__debug__/', include(debug_toolbar.urls)),
+    path('', include('news.urls')),
 ]
 
 if settings.DEBUG:
