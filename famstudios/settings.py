@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'news',
 
     # Third party-apps
+    'taggit',
     'ckeditor',
     'ckeditor_uploader',
     'bootstrap4',

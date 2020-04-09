@@ -1,5 +1,6 @@
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.urls import reverse
 from django.utils import timezone
 from django.db import models
 from taggit.managers import TaggableManager
