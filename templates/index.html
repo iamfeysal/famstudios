@@ -27,7 +27,8 @@
 	<header id="header">
 		<div class="inner">
 			<h1><strong>Categories</strong><span>
-                {% for post in posts %}
+                {% for category in categories %}
+                    <p>{{ category.name }}</p>
                 
                 {% endfor %}
                 
