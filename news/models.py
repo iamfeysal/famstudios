@@ -26,10 +26,12 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
-    photo = models.ImageField(upload_to='photos', blank=True, null=True)
+    image = models.ImageField(upload_to='photos', blank=True, null=True)
     description = RichTextField(max_length=350, blank=True, null=True)
     body = RichTextUploadingField(blank=True, null=True, config_name='special')
     publish = models.DateTimeField(default=timezone.now)
+    category = models.ForeignKey(
+        'Category', on_delete=models.CASCADE, default="General")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES,
