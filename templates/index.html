@@ -43,10 +43,10 @@
 			{% for post in posts %}
 			<article class="col-6 col-12-xsmall work-item">
 				{% if post.img %}
-				<a href="{% url 'post_detail' post.id %}" class="image fit thumb"><img src="{{ post.img.url }}"
+				<a href="" class="image fit thumb"><img src="{{ post.image.url }}"
 						alt="" /></a>
 				{% else %}
-				<a href="{% url 'post_detail' post.id %}" class="image fit thumb"><img
+				<a href="" class="image fit thumb"><img
 						src="{% static 'images/thumbs/01.jpg' %}" alt="" /></a>
 				{% endif%}
 				<h3>{{ post.title }}</h3>

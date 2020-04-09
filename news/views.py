@@ -11,13 +11,13 @@ def archive_view(request):
 
 
 def post_detail(request, id):
-    post = Post.objects.get(id=id)
-    data = {'post': post}
+    posts = Post.objects.get(id=id)
+    data = {'posts': posts}
     return render(request, 'post_detail.html', data)
 
 
 def latest_view(request):
-    posts = Post.objects.filter(publish=True).order_by('-created_on')
+    posts = Post.published.all()
     data = {'posts': posts}
     return render(request, 'index.html', data)
 
