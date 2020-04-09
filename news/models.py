@@ -2,13 +2,16 @@ from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils import timezone
 from django.db import models
-
+from taggit.managers import TaggableManager
 
 class Category(models.Model):
     name = models.CharField(db_index=True, max_length=150, primary_key=True)
 
     def __str__(self):
         return self.name
+
+
+
 
 
 class Post(models.Model):
@@ -26,7 +29,6 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES,
                               default='draft')
-    click_nums = models.IntegerField(default=0, verbose_name=u'Clicks')
 
     objects = models.Manager()  # The default manager.
     published = PublishedManager()  # The specific manager.
