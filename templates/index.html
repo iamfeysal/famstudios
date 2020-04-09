@@ -26,8 +26,13 @@
 	<!-- Header -->
 	<header id="header">
 		<div class="inner">
-			<h1><strong>This website</strong> is a super<br />
-				simple responsive template for news</a>.</h1>
+			<h1><strong>Categories</strong><span>
+                {% for post in posts %}
+                
+                {% endfor %}
+                
+            </span></h1>
+            
 		</div>
 		<br><br>
 		<form method="post" action="{% url 'search' %}">
