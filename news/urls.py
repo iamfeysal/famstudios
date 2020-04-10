@@ -1,5 +1,6 @@
 from django.urls import path, include
-from .views import archive_view, post_detail, HomeView, search_view
+from .views import archive_view, post_detail, HomeView, search_view, \
+    category_list, category_detail
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
