@@ -12,13 +12,6 @@ class PublishedManager(models.Manager):
             status='published')
 
 
-class Category(models.Model):
-    name = models.CharField(db_index=True, max_length=150, primary_key=True)
-
-    def __str__(self):
-        return self.name
-
-
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -53,3 +46,14 @@ class Post(models.Model):
                                             self.publish.strftime('%m'),
                                             self.publish.strftime('%d'),
                                             self.slug])
+    #
+    # def get_postcategories(self):
+    #     # Get the number of course chapters
+    #     return self.
+
+
+class Category(models.Model):
+    name = models.CharField(db_index=True, max_length=150, primary_key=True)
+
+    def __str__(self):
+        return self.name
