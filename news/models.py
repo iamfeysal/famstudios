@@ -13,10 +13,18 @@ class PublishedManager(models.Manager):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True,
+                                      verbose_name="Created at")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
+    title = models.CharField(max_length=255, verbose_name="Title")
+
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+        ordering = ['title']
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class Post(models.Model):
