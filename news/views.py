@@ -29,10 +29,10 @@ def show_category(request, hierarchy=None):
             category_name = [' '.join(i.split('/')[-1].split('-')) for i in
                              breadcrumbs_link]
             breadcrumbs = zip(breadcrumbs_link, category_name)
-            return render(request, "postDetail.html",
+            return render(request, "post_detail.html",
                           {'instance': instance, 'breadcrumbs': breadcrumbs})
 
-    return render(request, "categories.html",
+    return render(request, "index.html",
                   {'post_set': parent.post_set.all(),
                    'sub_categories': parent.children.all()})
 
