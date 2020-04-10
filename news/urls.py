@@ -1,6 +1,6 @@
 from django.urls import path, include, re_path
 from .views import archive_view, post_detail, search_view, \
-    category_list, category_detail
+    category_list, category_detail, latest_view
 
 urlpatterns = [
     path('', latest_view, name='home'),
