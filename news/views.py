@@ -17,9 +17,9 @@ class PostListView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
+        posts = Post.published.all()
         posts = (
-            Post.objects.filter(category=self.get_object(), )
-                .order_by('published')
+            posts
         )
         context['posts'] = posts
         return context
