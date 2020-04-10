@@ -29,17 +29,6 @@ def post_by_category(request, category_slug):
     return render(request, 'blog/post_by_category.html', context)
 
 
-# view function to display post by tag
-def post_by_tag(request, tag_slug):
-    tag = Tag.objects.get(slug=tag_slug)
-    posts = Post.objects.filter(tags__name=tag)
-    context = {
-        'tag': tag,
-        'posts': posts
-    }
-    return render(request, 'blog/post_by_tag.html', context)
-
-
 def archive_view(request):
     posts = Post.published.all()
     data = {'posts': posts}
