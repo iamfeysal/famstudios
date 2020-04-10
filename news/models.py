@@ -26,6 +26,10 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+    def get_post(self):
+        # Get Course Chapter
+        return self.post_set.all()
+
 
 class Post(models.Model):
     STATUS_CHOICES = (
