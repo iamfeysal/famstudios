@@ -129,7 +129,8 @@
                 <div class="category_title"> <a href="pages/category-archive.html">Category 1</a></div>
                 <div class="single_category_inner">
                   <ul class="catg_nav">
-                      {% for post in posts.category_set.all %}
+                      {%  for ct in all_categs %}
+                          {% for post in ct.posts %}
                     <li>
                       <div class="catgimg_container"> <a class="catg1_img" href="pages/single_page.html"> <img src="images/310x150.jpg" alt=""> </a></div>
                       <a class="catg_title" href="pages/single_page.html">
@@ -139,6 +140,7 @@
                         <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
                         <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
                    </li>
+                      {% endfor %}
                       {% endfor %}
                   </ul>
                 </div>
