@@ -24,6 +24,10 @@ class PostCategory(ListView):
     def get_queryset(self):
         category = get_object_or_404(Category, pk=self.kwargs['pk'])
         return Post.objects.filter(category=category)
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context= super(PostCategory, self).get_context_data(**kwargs)
+        context['category']=self.category
+        return context
 
 
 def category_list(request):
