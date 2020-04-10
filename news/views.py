@@ -18,21 +18,26 @@ def post_detail(request, id):
     return render(request, 'post_detail.html', data)
 
 
-def category_list(request):
-    categories = Category.objects.all()  # this will get all categories, you
-    # can do some filtering if you need (e.g. excluding categories without
-    # posts in it)
+def post_by_category(request, category_slug):
+    category = Category.objects.get(slug=category_slug)
+    posts = Post.objects.filter(category__slug=category_slug)
+    context = {
+        'category': category,
+        'posts': posts
+    }
+    print(category)
+    return render(request, 'blog/post_by_category.html', context)
 
-    return render(request, 'index.html', {
-        'categories': categories})  # blog/category_list.html should be the 
-    # template that categories are listed. 
 
-
-def category_detail(request, pk):
-    category = get_object_or_404(Category, pk=pk)
-    return render(request, 'index.html', {
-        'category': category})  # in this template, you will have access to
-    # category and posts under that category by (category.post_set).
+# view function to display post by tag
+def post_by_tag(request, tag_slug):
+    tag = Tag.objects.get(slug=tag_slug)
+    posts = Post.objects.filter(tags__name=tag)
+    context = {
+        'tag': tag,
+        'posts': posts
+    }
+    return render(request, 'blog/post_by_tag.html', context)
 
 
 def archive_view(request):
