@@ -1,15 +1,28 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Post, Category
 from django.db.models import Q
 
 
-def latest_view(request):
-    posts = Post.published.all()
-    data = {'posts': posts, }
-    return render(request, 'index.html', data)
+# def latest_view(request):
+#     posts = Post.published.all()
+#     data = {'posts': posts, }
+#     return render(request, 'index.html', data)
+
+class PostListView(DetailView):
+    model = Category
+    template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data(**kwargs)
+        posts = (
+            Post.objects.filter(category=self.get_object(), )
+                .order_by('published')
+        )
+        context['posts'] = posts
+        return context
 
 
 def post_detail(request, id):
