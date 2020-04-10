@@ -17,11 +17,14 @@ def post_detail(request, id):
     data = {'posts': posts}
     return render(request, 'post_detail.html', data)
 
+
 class PostCategory(ListView):
     model = Post
+
     def get_queryset(self):
-        category=get_object_or_404(Category, pk=self.kwargs['pk'])
+        category = get_object_or_404(Category, pk=self.kwargs['pk'])
         return Post.objects.filter(category=category)
+
 
 def category_list(request):
     categories_list = Category.objects.all()  # this will get all categories,
