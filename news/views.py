@@ -11,19 +11,26 @@ from django.db.models import Q
 #     data = {'posts': posts, }
 #     return render(request, 'index.html', data)
 
-class PostListView(DetailView):
+class PostListView(ListView):
     model = Category
     template_name = 'index.html'
 
-    def get_queryset(self):
-        post_cat = Post.published.all()
-        self.posts = get_object_or_404(Post, pk=self.kwargs['pk'])
-        return post_cat.filter(category=self.posts)
-
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
-        context['posts'] = self.posts
+        posts = Post.published.all()
+        posts = (
+            posts.filter(category=self.get_object(),
+        )
+        context['posts'] = posts
         return context
+
+
+def post_detail(request, id):
+    posts = Post.objects.get(id=id)
+    data = {'posts': posts}
+    return render(request, 'post_detail.html', data)
+
+
 class PostCategory(ListView):
     model = Post
     template_name = 'index.html'
@@ -37,14 +44,6 @@ class PostCategory(ListView):
         context = super(PostCategory, self).get_context_data(**kwargs)
         context['category'] = self.category
         return context
-
-def post_detail(request, id):
-    posts = Post.objects.get(id=id)
-    data = {'posts': posts}
-    return render(request, 'post_detail.html', data)
-
-
-
 
 
 # def category_list(request):
