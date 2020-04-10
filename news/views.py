@@ -17,16 +17,30 @@ def post_detail(request, id):
     data = {'posts': posts}
     return render(request, 'post_detail.html', data)
 
+class PostCategory(ListView):
+    model = Post
+    def get_queryset(self):
+        category=get_object_or_404(Category, pk=self.kwargs['pk'])
+        return Post.objects.filter(category=category)
 
-def post_by_category(request, category):
-    categories = Category.objects.get(title='title')
-    posts_cat = Post.objects.filter(category='category')
-    context = {
-        'categories': categories,
-        'posts_cat': posts_cat
-    }
-    print(category)
-    return render(request, 'index.html', context)
+def category_list(request):
+    categories_list = Category.objects.all()  # this will get all categories,
+    # you
+    # can do some filtering if you need (e.g. excluding categories without
+    # posts in it)
+
+    return render(request, 'index.html', {
+        'categories_list': categories_list})  # blog/category_list.html
+    # should be the
+    # template that categories are listed.
+
+
+def category_detail(request, pk):
+    categorys_detail = get_object_or_404(Category, pk=pk)
+    return render(request, 'index.html', {
+        'categorys_detail': categorys_detail})  # in this template, you will
+    # have access to
+    # category and posts under that category by (category.post_set).
 
 
 def archive_view(request):
