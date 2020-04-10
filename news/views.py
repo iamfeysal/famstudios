@@ -6,7 +6,6 @@ from .models import Post, Category
 from django.db.models import Q
 
 
-
 def post_detail(request, id):
     posts = Post.objects.get(id=id)
     data = {'posts': posts}
@@ -17,6 +16,8 @@ def latest_view(request):
     posts = Post.published.all()
     data = {'posts': posts, }
     return render(request, 'index.html', data)
+
+
 def archive_view(request):
     posts = Post.published.all()
     data = {'posts': posts}
