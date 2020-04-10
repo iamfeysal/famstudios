@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, include, re_path
 from .views import archive_view, post_detail, HomeView, search_view, \
     category_list, category_detail
 
