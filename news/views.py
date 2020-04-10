@@ -18,12 +18,12 @@ def post_detail(request, id):
     return render(request, 'post_detail.html', data)
 
 
-def post_by_category(request, category_slug):
-    category = Category.objects.get(slug=category_slug)
-    posts = Post.objects.filter(category__slug=category_slug)
+def post_by_category(request, category):
+    categories = Category.objects.get(title='title')
+    posts_cat = Post.objects.filter(category='category')
     context = {
-        'category': category,
-        'posts': posts
+        'categories': categories,
+        'posts_cat': posts_cat
     }
     print(category)
     return render(request, 'index.html', context)
