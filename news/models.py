@@ -46,10 +46,8 @@ class Post(models.Model):
                                             self.publish.strftime('%m'),
                                             self.publish.strftime('%d'),
                                             self.slug])
-    #
-    # def get_postcategories(self):
-    #     # Get the number of course chapters
-    #     return self.
+
+
 
 
 class Category(models.Model):
