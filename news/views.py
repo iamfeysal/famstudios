@@ -19,10 +19,13 @@ def post_detail(request, id):
 
 
 def category_list(request):
-    categories = Category.objects.all()  # this will get all categories, you can do some filtering if you need (e.g. excluding categories without posts in it)
+    categories = Category.objects.all()  # this will get all categories, you
+    # can do some filtering if you need (e.g. excluding categories without
+    # posts in it)
 
     return render(request, 'blog/category_list.html', {
-        'categories': categories})  # blog/category_list.html should be the template that categories are listed.
+        'categories': categories})  # blog/category_list.html should be the 
+    # template that categories are listed. 
 
 
 def category_detail(request, pk):
