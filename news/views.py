@@ -26,7 +26,7 @@ def post_by_category(request, category_slug):
         'posts': posts
     }
     print(category)
-    return render(request, 'blog/post_by_category.html', context)
+    return render(request, 'index.html', context)
 
 
 def archive_view(request):
