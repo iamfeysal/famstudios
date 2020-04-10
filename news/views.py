@@ -46,7 +46,7 @@ class HomeView(ListView):
     # context_object_name = 'all_categs'
 
     def get_queryset(self):
-        self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
+        self.category = get_object_or_404(Category)
         posts = Post.published()
         return posts.filter(category=self.category)
 
