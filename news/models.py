@@ -31,7 +31,7 @@ class Category(models.Model):
         verbose_name_plural = "categories"
 
     def __str__(self):
-        full_path = [self.name]
+        return self.name
 
 
 class Post(models.Model):
