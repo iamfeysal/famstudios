@@ -6,18 +6,24 @@ from .models import Post, Category
 from django.db.models import Q
 
 
-
-
-
 def latest_view(request):
     posts = Post.published.all()
     data = {'posts': posts, }
     return render(request, 'index.html', data)
 
+
 def post_detail(request, id):
     posts = Post.objects.get(id=id)
     data = {'posts': posts}
     return render(request, 'post_detail.html', data)
+def category_list(request):
+    categories = Category.objects.all() # this will get all categories, you can do some filtering if you need (e.g. excluding categories without posts in it)
+
+    return render (request, 'blog/category_list.html', {'categories': categories}) # blog/category_list.html should be the template that categories are listed.
+
+def category_detail(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+
 def archive_view(request):
     posts = Post.published.all()
     data = {'posts': posts}
