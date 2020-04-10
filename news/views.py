@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 
 from .models import Post, Category
@@ -25,20 +25,6 @@ def post_detail(request, id):
 #     data = {'posts': posts, 'categories': categories}
 #     return render(request, 'index.html', data)
 
-# class HomeView(ListView):
-#     template_name = 'index.html'
-#     model = Category
-#     context_object_name = 'all_categs'
-#
-#     def get_queryset(self):
-#         return Category.objects.all()
-#
-#     def get_context_data(self):
-#         context = super(HomeView, self).get_context_data()
-#         context['posts'] = Post.published.all()
-#         # This will show your 3 latest posts you can add accordingly
-#         return context
-
 class HomeView(ListView):
     template_name = 'index.html'
     model = Category
@@ -52,6 +38,25 @@ class HomeView(ListView):
         context['posts'] = Post.published.all()
         # This will show your 3 latest posts you can add accordingly
         return context
+
+
+class CategoryView(ListView):
+    template_name = 'index.html'
+    model = Post
+
+    # context_object_name = 'all_categs'
+
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
+        posts = Post.published()
+        return posts.filter(category=self.category)
+
+    def get_context_data(self, **kwargs):
+        context = super(CategoryView, self).get_context_data(**kwargs)
+        context['category'] = self.category
+        # This will show your 3 latest posts you can add accordingly
+        return context
+
 
 def search_view(request):
     r_search = request.POST['search']
