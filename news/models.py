@@ -18,10 +18,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    # def get_postcategories(self):
-    #     # Get the number of course chapters
-    #     return self.category
-
 
 class Post(models.Model):
     STATUS_CHOICES = (
