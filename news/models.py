@@ -14,7 +14,7 @@ class PublishedManager(models.Manager):
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
-    slug = models.SlugField()
+    slug = models.SlugField(blank=True, null=True)
     parent = models.ForeignKey('self', blank=True, null=True,
                                related_name='children',
                                on_delete=models.CASCADE)
