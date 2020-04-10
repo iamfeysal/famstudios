@@ -1,9 +1,10 @@
 from django.urls import path, include, re_path
-from .views import archive_view, post_detail, index, view_category, search_view
+from .views import archive_view, post_detail, index, view_category, search_view, \
+    show_category
 
 urlpatterns = [
     path('', index, name='home'),
-    re_path(r'^category/(?P<hierarchy>.+)/$', views.show_category,
+    re_path(r'^category/(?P<hierarchy>.+)/$', show_category,
             name='category'),
 
     # path('post/cat', CategoryView.as_view(), name='category'),
