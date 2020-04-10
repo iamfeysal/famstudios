@@ -20,35 +20,37 @@ def post_detail(request, id):
 
 class PostCategory(ListView):
     model = Post
+    template_name = 'index.html'
 
     def get_queryset(self):
-        category = get_object_or_404(Category, pk=self.kwargs['pk'])
-        return Post.objects.filter(category=category)
+        post_cat = Post.published.all()
+        self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
+        return post_cat.filter(category=self.category)
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super(PostCategory, self).get_context_data(**kwargs)
         context['category'] = self.category
         return context
 
 
-def category_list(request):
-    categories_list = Category.objects.all()  # this will get all categories,
-    # you
-    # can do some filtering if you need (e.g. excluding categories without
-    # posts in it)
-
-    return render(request, 'index.html', {
-        'categories_list': categories_list})  # blog/category_list.html
-    # should be the
-    # template that categories are listed.
-
-
-def category_detail(request, pk):
-    categorys_detail = get_object_or_404(Category, pk=pk)
-    return render(request, 'index.html', {
-        'categorys_detail': categorys_detail})  # in this template, you will
-    # have access to
-    # category and posts under that category by (category.post_set).
+# def category_list(request):
+#     categories_list = Category.objects.all()  # this will get all categories,
+#     # you
+#     # can do some filtering if you need (e.g. excluding categories without
+#     # posts in it)
+#
+#     return render(request, 'index.html', {
+#         'categories_list': categories_list})  # blog/category_list.html
+#     # should be the
+#     # template that categories are listed.
+#
+#
+# def category_detail(request, pk):
+#     categorys_detail = get_object_or_404(Category, pk=pk)
+#     return render(request, 'index.html', {
+#         'categorys_detail': categorys_detail})  # in this template, you will
+#     # have access to
+#     # category and posts under that category by (category.post_set).
 
 
 def archive_view(request):
