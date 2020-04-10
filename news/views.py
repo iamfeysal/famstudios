@@ -22,6 +22,8 @@ def latest_view(request):
     posts = Post.published.all()
     data = {'posts': posts, }
     return render(request, 'index.html', data)
+
+
 def search_view(request):
     r_search = request.POST['search']
     posts = Post.objects.filter(Q(
@@ -64,6 +66,3 @@ def search_view(request):
 #         context['posts'] = Post.published.all()
 #         # This will show your 3 latest posts you can add accordingly
 #         return context
-
-
-
