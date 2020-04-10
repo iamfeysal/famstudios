@@ -3,9 +3,6 @@
 
 
 {% block content %}
-    <div id="preloader">
-  <div id="status">&nbsp;</div>
-</div>
 <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 <div class="container">
   <div class="box_wrapper">
@@ -20,7 +17,7 @@
               <ul class="nav navbar-nav custom_nav">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="#">Shortcodes</a></li>
-                <li><a href="pages/category-archive.html">Archive</a></li>
+                <li><a href="{% url 'archive' %}">Archive</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="pages/404.html">404 Page</a></li>
               </ul>
@@ -31,8 +28,9 @@
           <button id="searchIcon"><i class="fa fa-search"></i></button>
           <div id="shide">
             <div id="search-hide">
-              <form action="#">
-                <input type="text" size="40" placeholder="Search here ...">
+              <form method="post" action="{% url 'search' %}">
+                  {% csrf_token %}
+                <input  type="text" size="40" name="search" id="search" placeholder="Search here ...">
               </form>
               <button class="remove"><span><i class="fa fa-times"></i></span></button>
             </div>
@@ -40,55 +38,29 @@
         </div>
       </div>
       <div class="header_bottom">
-        <div class="logo_area"><a class="logo" href="#"><b>S</b>ybarMagazine <span>A Pro Magazine Theme</span></a></div>
+        <div class="logo_area"><a class="logo" href="#"><b>Fam</b>Studios
+            <span><small>Bringing you all latest somali
+                news</small></span></a></div>
         <div class="top_addarea"><a href="#"><img src="images/addbanner_728x90_V1.jpg" alt=""></a></div>
       </div>
     </header>
     <div class="latest_newsarea"> <span>Latest News</span>
       <ul id="ticker01" class="news_sticker">
-        <li><a href="#">My First News Item</a></li>
-        <li><a href="#">My Second News Item</a></li>
-        <li><a href="#">My Third News Item</a></li>
-        <li><a href="#">My Four News Item</a></li>
-        <li><a href="#">My Five News Item</a></li>
-        <li><a href="#">My Six News Item</a></li>
-        <li><a href="#">My Seven News Item</a></li>
-        <li><a href="#">My Eight News Item</a></li>
-        <li><a href="#">My Nine News Item</a></li>
+          {% for post in posts|slice:":10" %}
+        <li><a href="#">{{ post.title }}</a></li>
+          {% endfor %}
       </ul>
     </div>
     <div class="thumbnail_slider_area">
       <div class="owl-carousel">
-        <div class="signle_iteam"> <img src="images/395x396.jpg" alt="">
+          {% for post in posts|slice:"4:10" %}
+        <div class="signle_iteam"> <img src="{{ post.image.url }}" alt="">
           <div class="sing_commentbox slider_comntbox">
             <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
             <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
-          <a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></div>
-        <div class="signle_iteam"> <img src="images/395x396.jpg" alt="">
-          <div class="sing_commentbox slider_comntbox">
-            <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
-            <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
-          <a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></div>
-        <div class="signle_iteam"> <img src="images/395x396.jpg" alt="">
-          <div class="sing_commentbox slider_comntbox">
-            <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
-            <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
-          <a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></div>
-        <div class="signle_iteam"> <img src="images/395x396.jpg" alt="">
-          <div class="sing_commentbox slider_comntbox">
-            <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
-            <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
-          <a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></div>
-        <div class="signle_iteam"> <img src="images/395x396.jpg" alt="">
-          <div class="sing_commentbox slider_comntbox">
-            <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
-            <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
-          <a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></div>
-        <div class="signle_iteam"> <img src="images/395x396.jpg" alt="">
-          <div class="sing_commentbox slider_comntbox">
-            <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
-            <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
-          <a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></div>
+          <a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a>
+        </div>
+          {% endfor %}
       </div>
     </div>
     <section id="contentbody">
@@ -100,9 +72,13 @@
                 <h2><span>Recent Post</span></h2>
                 <div class="singleleft_inner">
                   <ul class="recentpost_nav wow fadeInDown">
-                    <li><a href="pages/single_page.html"><img src="images/150x80.jpg" alt=""></a> <a class="recent_title" href="pages/single_page.html"> Curabitur ac dictum nisl eu hendrerit ante</a></li>
-                    <li><a href="pages/single_page.html"><img src="images/150x80.jpg" alt=""></a> <a class="recent_title" href="pages/single_page.html"> Curabitur ac dictum nisl eu hendrerit ante</a></li>
-                    <li><a href="pages/single_page.html"><img src="images/150x80.jpg" alt=""></a> <a class="recent_title" href="pages/single_page.html"> Curabitur ac dictum nisl eu hendrerit ante</a></li>
+                    {% for post in posts|slice:"0:3" %}
+                    <li><a href="pages/single_page.html">
+                        <img src="{{ post.image.url }}" alt=""></a>
+                        <a class="recent_title" href="pages/single_page.html">
+                            {{ post.title }}
+                        </a></li>
+                      {% endfor %}
                   </ul>
                 </div>
               </div>
