@@ -15,6 +15,10 @@ class PostListView(DetailView):
     model = Category
     template_name = 'index.html'
 
+    def get_queryset(self):
+        post_cat = Post.published.all()
+        self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
+        return post_cat.filter(category=self.category)
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
         posts = Post.published.all()

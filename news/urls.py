@@ -1,9 +1,9 @@
 from django.urls import path, include, re_path
-from .views import archive_view, post_detail, search_view, latest_view, \
-    PostCategory
+from .views import archive_view, post_detail, search_view, PostCategory, \
+    PostListView
 
 urlpatterns = [
-    path('', latest_view, name='home'),
+    path('', PostListView.as_view(), name='home'),
     path('archive/', archive_view, name='archive'),
     path('post/<int:id>', post_detail, name='post_detail'),
     re_path(r'^post/cat/(?P<id>\d+)/$', PostCategory.as_view(),
