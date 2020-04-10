@@ -44,8 +44,6 @@ class CategoryView(ListView):
     template_name = 'index.html'
     model = Post
 
-    # context_object_name = 'all_categs'
-
     def get_queryset(self):
         self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
         posts = Post.published()
