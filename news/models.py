@@ -45,7 +45,7 @@ class Post(models.Model):
     description = RichTextField(max_length=350, blank=True, null=True)
     body = RichTextUploadingField(blank=True, null=True, config_name='special')
     publish = models.DateTimeField(default=timezone.now)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+    category = models.ForeignKey('Category', on_delete=models.CASCADE,
                                  default="General")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
