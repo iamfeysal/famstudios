@@ -30,6 +30,9 @@ def category_list(request):
 
 def category_detail(request, pk):
     category = get_object_or_404(Category, pk=pk)
+    return render(request, 'blog/category_detail.html', {
+        'category': category})  # in this template, you will have access to
+    # category and posts under that category by (category.post_set).
 
 
 def archive_view(request):
