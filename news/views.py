@@ -6,6 +6,30 @@ from .models import Post, Category
 from django.db.models import Q
 
 
+def index(request):
+    posts = Post.published.all()
+    categories = Category.objects.all(),
+    return render('index.html', {
+        'categories': categories,
+        'posts': posts
+    })
+
+
+# def view_post(request, slug):
+#     return render('view_post.html', {
+#         'post': get_object_or_404(Post, slug=slug)
+#     })
+
+
+def view_category(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    posts = Post.published.all()
+    return render('index.html', {
+        'category': category,
+        'posts': posts.filter(category=category)
+    })
+
+
 def archive_view(request):
     posts = Post.published.all()
     data = {'posts': posts}
@@ -25,35 +49,19 @@ def post_detail(request, id):
 #     data = {'posts': posts, 'categories': categories}
 #     return render(request, 'index.html', data)
 
-class HomeView(ListView):
-    template_name = 'index.html'
-    model = Category
-    context_object_name = 'all_categs'
-
-    def get_queryset(self):
-        return Category.objects.all()
-
-    def get_context_data(self):
-        context = super(HomeView, self).get_context_data()
-        context['posts'] = Post.published.all()
-        # This will show your 3 latest posts you can add accordingly
-        return context
-
-
-class CategoryView(ListView):
-    template_name = 'index.html'
-    model = Post
-
-    def get_queryset(self):
-        self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
-        posts = Post.published()
-        return posts.filter(category=self.category)
-
-    def get_context_data(self, **kwargs):
-        context = super(CategoryView, self).get_context_data(**kwargs)
-        context['category'] = self.category
-        # This will show your 3 latest posts you can add accordingly
-        return context
+# class HomeView(ListView):
+#     template_name = 'index.html'
+#     model = Category
+#     context_object_name = 'all_categs'
+#
+#     def get_queryset(self):
+#         return Category.objects.all()
+#
+#     def get_context_data(self):
+#         context = super(HomeView, self).get_context_data()
+#         context['posts'] = Post.published.all()
+#         # This will show your 3 latest posts you can add accordingly
+#         return context
 
 
 def search_view(request):
