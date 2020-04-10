@@ -12,6 +12,17 @@ class PublishedManager(models.Manager):
             status='published')
 
 
+class Category(models.Model):
+    name = models.CharField(db_index=True, max_length=150, primary_key=True)
+
+    def __str__(self):
+        return self.name
+
+    # def get_postcategories(self):
+    #     # Get the number of course chapters
+    #     return self.category
+
+
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -23,7 +34,8 @@ class Post(models.Model):
     description = RichTextField(max_length=350, blank=True, null=True)
     body = RichTextUploadingField(blank=True, null=True, config_name='special')
     publish = models.DateTimeField(default=timezone.now)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default="General")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+                                 default="General")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES,
@@ -45,5 +57,3 @@ class Post(models.Model):
                                             self.publish.strftime('%m'),
                                             self.publish.strftime('%d'),
                                             self.slug])
-
-
