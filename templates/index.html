@@ -74,7 +74,8 @@
                   <ul class="recentpost_nav wow fadeInDown">
                     {% for post in posts|slice:"0:3" %}
                     <li><a href="pages/single_page.html">
-                        <img src="{{ post.image.url }}" alt=""></a>
+                        <img src="{{ post.image.url }}" alt="">
+                    </a>
                         <a class="recent_title" href="pages/single_page.html">
                             {{ post.title }}
                         </a></li>
@@ -82,10 +83,10 @@
                   </ul>
                 </div>
               </div>
-              <div class="single_leftbar wow fadeInDown">
-                <h2><span>Side Add</span></h2>
-                <div class="singleleft_inner"> <a href="#"><img src="images/150x600.jpg" alt=""></a></div>
-              </div>
+{#              <div class="single_leftbar wow fadeInDown">#}
+{#                <h2><span>Side Add</span></h2>#}
+{#                <div class="singleleft_inner"> <a href="#"><img src="images/150x600.jpg" alt=""></a></div>#}
+{#              </div>#}
             </div>
           </div>
         </div>
@@ -128,34 +129,17 @@
                 <div class="category_title"> <a href="pages/category-archive.html">Category 1</a></div>
                 <div class="single_category_inner">
                   <ul class="catg_nav">
+                      {% for post in posts.category_set.all %}
                     <li>
                       <div class="catgimg_container"> <a class="catg1_img" href="pages/single_page.html"> <img src="images/310x150.jpg" alt=""> </a></div>
-                      <a class="catg_title" href="pages/single_page.html"> Curabitur ac dictum nisl eu hendrerit ante</a>
+                      <a class="catg_title" href="pages/single_page.html">
+                          {{ post.title }}
+                          /a>
                       <div class="sing_commentbox">
                         <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
                         <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
                    </li>
-                    <li>
-                      <div class="catgimg_container"> <a class="catg1_img" href="pages/single_page.html"> <img src="images/310x150.jpg" alt=""> </a></div>
-                      <a class="catg_title" href="pages/single_page.html">Fusce eu nulla semper porttitor felis sit amet</a>
-                      <div class="sing_commentbox">
-                        <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
-                        <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
-                   </li>
-                    <li>
-                      <div class="catgimg_container"> <a class="catg1_img" href="pages/single_page.html"> <img src="images/310x150.jpg" alt=""> </a></div>
-                      <a class="catg_title" href="pages/single_page.html"> Curabitur ac dictum nisl eu hendrerit ante</a>
-                      <div class="sing_commentbox">
-                        <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
-                        <a href="pages/single_page.html"><i class="fa fa-comments"></i>20 Comments</a></div>
-                   </li>
-                    <li>
-                      <div class="catgimg_container"> <a class="catg1_img" href="#"> <img src="images/310x150.jpg" alt=""> </a></div>
-                      <a class="catg_title" href="#">Fusce eu nulla semper porttitor felis sit amet</a>
-                      <div class="sing_commentbox">
-                        <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
-                        <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
-                   </li>
+                      {% endfor %}
                   </ul>
                 </div>
               </div>

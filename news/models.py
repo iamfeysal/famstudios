@@ -18,6 +18,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_queryset(self):
+        return Post.objects.filter(category_id=self.id)
+
 
 class Post(models.Model):
     STATUS_CHOICES = (
