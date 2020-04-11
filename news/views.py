@@ -8,31 +8,12 @@ from .models import Post, Category
 from django.db.models import Q, Count
 
 
-# def latest_view(request):
-#     posts = Post.published.all()
-#     data = {'posts': posts, }
-#     return render(request, 'index.html', data)
-
-class PostListView(ListView):
-    model = Category
-    template_name = 'index.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(PostListView, self).get_context_data(**kwargs)
-        posts = Post.published.all()
-        posts = (
-            posts.objects.filter(category=self.category)
-        )
-        context['posts'] = posts
-        return context
 
 
 def post_detail(request, id):
     posts = Post.objects.get(id=id)
     data = {'posts': posts}
     return render(request, 'post_detail.html', data)
-
-
 
 
 def post_list(request, tag_slug=None):
