@@ -26,9 +26,8 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
-    def get_post(self):
-        # Get Course Chapter
-        return self.post_set.all()
+    def get_absolute_url(self):
+        return reverse('post_by_category', args=[self.title])
 
 
 class Post(models.Model):
