@@ -8,8 +8,6 @@ from .models import Post, Category
 from django.db.models import Q, Count
 
 
-
-
 def post_detail(request, id):
     posts = Post.objects.get(id=id)
     data = {'posts': posts}
