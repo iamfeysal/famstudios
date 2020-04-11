@@ -47,12 +47,13 @@ def post_detail(request, id):
 #         return context
 
 def post_list(request):
-    object_list = Post.objects.filter(status='Published').order_by("-created")
-    recent_post = object_list[:4]
-    category_list_count = Post.objects.annotate(num_category=Count('Category'))
+    posts = Post.published.all()
+    category_list_count = Post.objects.annotate(num_category=Count('category'))
+    # category_list_count = Post.objects.annotate(num_category=Count(
+    # 'category'))
 
     context = {
-        'recent_post': recent_post,
+        'posts': posts,
         'category_list_count': category_list_count,
     }
     return render(request, "index.html", context)

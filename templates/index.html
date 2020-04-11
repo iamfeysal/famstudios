@@ -126,18 +126,18 @@
               </div>
               <div class="single_category wow fadeInDown">
                 <div class="category_title"> <a href="pages/category-archive.html">
-                    {%  with category|first as cat %}
-                    {{ cat.title}}
+                    {%  with category_list_count|first as obj %}
+                    {{ obj.category.title}}
                       {% endwith %}
                 </a>
                 </div>
                 <div class="single_category_inner">
                   <ul class="catg_nav">
-                      {% for post in posts %}
+                      {% for post in category_list_count %}
                     <li>
                       <div class="catgimg_container"> <a class="catg1_img" href="pages/single_page.html"> <img src="images/310x150.jpg" alt=""> </a></div>
                       <a class="catg_title" href="pages/single_page.html">
-                          {{ post.title }}
+                          {{ post.category. }}
                           </a>
                       <div class="sing_commentbox">
                         <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
