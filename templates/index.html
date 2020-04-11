@@ -93,18 +93,21 @@
           <div class="row">
             <div class="middle_bar">
               <div class="featured_sliderarea">
+                  {% for post in posts %}
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                   </ol>
                   <div class="carousel-inner" role="listbox">
-                    <div class="item active"> <img src="images/668x328.jpg" alt="">
+                    <div class="item active">
+                        <img src="{% post.image.url %}" alt="">
                       <div class="carousel-caption">
                         <h1><a href="#"> Aliquam malesuada diam eget turpis varius 1</a></h1>
                       </div>
                     </div>
                   </div>
                   <a class="left left_slide" href="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> </a> <a class="right right_slide" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> </a></div>
+                {% endfor %}
               </div>
               <div class="single_category wow fadeInDown">
                 <div class="category_title"> <a href="pages/category-archive.html">
