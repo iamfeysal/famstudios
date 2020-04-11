@@ -46,6 +46,11 @@ def post_list(request, tag_slug=None):
     return render(request, "index.html", context)
 
 
+def list_of_post_by_category(request):
+    categories = Category.objects.all()
+    post = Post.published.all()
+
+
 def archive_view(request):
     posts = Post.published.all()
     data = {'posts': posts}
