@@ -43,6 +43,7 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     category = models.ForeignKey('Category', on_delete=models.CASCADE,
                                  default="General")
+    view_count = models.PositiveIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES,
