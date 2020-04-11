@@ -1,9 +1,10 @@
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 
 from .models import Post, Category
-from django.db.models import Q
+from django.db.models import Q, Count
 
 
 # def latest_view(request):
@@ -19,7 +20,7 @@ class PostListView(ListView):
         context = super(PostListView, self).get_context_data(**kwargs)
         posts = Post.published.all()
         posts = (
-            posts.filter(category=self.get_object(),
+            posts.objects.filter(category=self.category)
         )
         context['posts'] = posts
         return context
@@ -31,39 +32,30 @@ def post_detail(request, id):
     return render(request, 'post_detail.html', data)
 
 
-class PostCategory(ListView):
-    model = Post
-    template_name = 'index.html'
-
-    def get_queryset(self):
-        post_cat = Post.published.all()
-        self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
-        return post_cat.filter(category=self.category)
-
-    def get_context_data(self, **kwargs):
-        context = super(PostCategory, self).get_context_data(**kwargs)
-        context['category'] = self.category
-        return context
-
-
-# def category_list(request):
-#     categories_list = Category.objects.all()  # this will get all categories,
-#     # you
-#     # can do some filtering if you need (e.g. excluding categories without
-#     # posts in it)
+# class PostCategory(ListView):
+#     model = Post
+#     template_name = 'index.html'
 #
-#     return render(request, 'index.html', {
-#         'categories_list': categories_list})  # blog/category_list.html
-#     # should be the
-#     # template that categories are listed.
+#     def get_queryset(self):
+#         post_cat = Post.published.all()
+#         self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
+#         return post_cat.filter(category=self.category)
 #
-#
-# def category_detail(request, pk):
-#     categorys_detail = get_object_or_404(Category, pk=pk)
-#     return render(request, 'index.html', {
-#         'categorys_detail': categorys_detail})  # in this template, you will
-#     # have access to
-#     # category and posts under that category by (category.post_set).
+#     def get_context_data(self, **kwargs):
+#         context = super(PostCategory, self).get_context_data(**kwargs)
+#         context['category'] = self.category
+#         return context
+
+def post_list(request):
+    object_list = Post.objects.filter(status='Published').order_by("-created")
+    recent_post = object_list[:4]
+    category_list_count = Post.objects.annotate(num_category=Count('Category'))
+
+    context = {
+        'recent_post': recent_post,
+        'category_list_count': category_list_count,
+    }
+    return render(request, "index.html", context)
 
 
 def archive_view(request):
