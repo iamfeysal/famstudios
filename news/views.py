@@ -33,19 +33,7 @@ def post_detail(request, id):
     return render(request, 'post_detail.html', data)
 
 
-# class PostCategory(ListView):
-#     model = Post
-#     template_name = 'index.html'
-#
-#     def get_queryset(self):
-#         post_cat = Post.published.all()
-#         self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
-#         return post_cat.filter(category=self.category)
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(PostCategory, self).get_context_data(**kwargs)
-#         context['category'] = self.category
-#         return context
+
 
 def post_list(request, tag_slug=None):
     posts = Post.published.all()
