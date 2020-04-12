@@ -32,7 +32,7 @@ class Category(models.Model):
 
     @property
     def get_posts(self):
-        return Post.objects.filter(category=self.title)
+        return Post.objects.filter(category__title=self.title)
 
 
 class Post(models.Model):
