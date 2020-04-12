@@ -3,8 +3,8 @@
           <div class="row">
             <div class="middle_bar">
               <div class="single_category wow fadeInDown">
+              {% with categories.0 as category %}
                 <div class="category_title"> <a href="pages/category-archive.html">
-                    {% with categories.0 as category %}
 {#                    {% for category in categories %}#}
                     {{ category.title|capfirst }}
                 </a>
@@ -34,9 +34,8 @@
               </div>
 
               <div class="single_category  wow fadeInDown">
-
+                  {% for category in categories|slice:"1:4" %}
                 <div class="category_title"> <a href="pages/category-archive.html">
-                    {% for category in categories|slice:"1:4" %}
                     {{ category.title }}
                 </a>
                 </div>
@@ -46,11 +45,12 @@
                     <li>
                       <div class="catgimg_container"> <a class="catg1_img" href="#">
                           <img src="{{ product.image.url }}" alt=""> </a></div>
-                      <a class="catg_title" href="#"> {{ product.title }}</a>
+                      <a class="catg_title" href="#">{{ product.title|capfirst }}</a>
                       <div class="sing_commentbox">
-                        <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+                        <p><i class="fa fa-calendar"></i>
+                            {{ product.publish }}</p>
                         <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
-{#                      <p class="post-summary">Suspendisse mauris dui, interdum vitae vehicula ut, posuere sed lectus. Nulla facilisi. Curabitur...</p>#}
+                      <p class="post-summary">{{ product.description|safe }}</p>
                    </li>
 {#                    <li>#}
 {#                      <div class="catgimg_container"> <a class="catg1_img" href="#"> <img src="images/310x300.jpg" alt=""> </a></div>#}
@@ -60,10 +60,11 @@
 {#                        <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>#}
 {#                      <p class="post-summary">Suspendisse mauris dui, interdum vitae vehicula ut, posuere sed lectus. Nulla facilisi. Curabitur...</p>#}
 {#                   </li>#}
-                  {% endfor %}
+                           {% endfor %}
                   </ul>
-                {% endfor %}
+
                 </div>
+                  {% endfor %}
               </div>
 
 
@@ -186,7 +187,7 @@
 {#                      </div>#}
 {#                    </div>#}
 {#                  </div>#}
-{#                </div>#}
+                </div>
 
 
               </div>
