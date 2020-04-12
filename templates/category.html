@@ -21,9 +21,9 @@
                       <div class="sing_commentbox">
                         <p><i class="fa fa-calendar"></i>
                             {{ product.publish }}</p>
-                        <a href="#"><i class="fa fa-comments">
-                        </i>20 Comments
-                        </a>
+{#                        <a href="#"><i class="fa fa-comments">#}
+{#                        </i>20 Comments#}
+{#                        </a>#}
                           <p class="post-summary">{{ product.description|safe }}</p>
                       </div>
                    </li>
@@ -70,11 +70,9 @@
 
 
               <div class="category_three_fourarea  wow fadeInDown">
-                  {% for category in categories|slice:"4:" %}
                 <div class="category_three">
                   <div class="single_category">
                     <div class="category_title"> <a href="pages/single_page.html">
-                        {{ category.title}}
                     </a></div>
                     <div class="single_category_inner">
                       <ul class="catg_nav catg_nav3">
@@ -130,64 +128,62 @@
                     </div>
                   </div>
                 </div>
-                  {% endfor %}
-
-{#                  <div class="category_four wow fadeInDown">#}
-{#                  <div class="single_category">#}
-{#                    <div class="category_title"> <a href="#">Category 4</a></div>#}
-{#                    <div class="single_category_inner">#}
-{#                      <ul class="catg_nav catg_nav3">#}
-{#                        <li>#}
-{#                          <div class="catgimg_container"> <a class="catg1_img" href="pages/single_page.html"> <img src="images/292x150.jpg" alt=""> </a></div>#}
-{#                          <a class="catg_title" href="pages/single_page.html"> Curabitur ac dictum nisl eu hendrerit ante</a>#}
-{#                          <div class="sing_commentbox">#}
-{#                            <p><i class="fa fa-calendar"></i>19 Nov 2045</p>#}
-{#                            <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>#}
-{#                          <p class="post-summary">Duis erat purus, tincidunt vel ullamcorper ut, consequat tempus nibh. Proin condimentum risus ligula, dignissim mollis tortor hendrerit vel. Aliquam...</p>#}
-{#                       </li>#}
-{#                      </ul>#}
-{#                      <div class="catg3_bottompost wow fadeInDown">#}
-{#                        <ul class="catg3_snav">#}
-{#                          <li>#}
-{#                            <div class="media"> <a class="media-left" href="pages/single_page.html"> <img src="images/70x70.jpg" alt=""> </a>#}
-{#                              <div class="media-body"> <a class="catg_title" href="#"> Aliquam malesuada diam eget turpis varius</a>#}
-{#                                <div class="sing_commentbox">#}
-{#                                  <p><i class="fa fa-calendar"></i>19 Nov 2045</p>#}
-{#                                  <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>#}
-{#                              </div>#}
-{#                            </div>#}
-{#                         </li>#}
-{#                          <li>#}
-{#                            <div class="media"> <a class="media-left" href="#"> <img src="images/70x70.jpg" alt=""> </a>#}
-{#                              <div class="media-body"> <a class="catg_title" href="#"> Aliquam malesuada diam eget turpis varius</a>#}
-{#                                <div class="sing_commentbox">#}
-{#                                  <p><i class="fa fa-calendar"></i>19 Nov 2045</p>#}
-{#                                  <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>#}
-{#                              </div>#}
-{#                            </div>#}
-{#                         </li>#}
-{#                          <li>#}
-{#                            <div class="media"> <a class="media-left" href="#"> <img src="images/70x70.jpg" alt=""> </a>#}
-{#                              <div class="media-body"> <a class="catg_title" href="#"> Aliquam malesuada diam eget turpis varius</a>#}
-{#                                <div class="sing_commentbox">#}
-{#                                  <p><i class="fa fa-calendar"></i>19 Nov 2045</p>#}
-{#                                  <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>#}
-{#                              </div>#}
-{#                            </div>#}
-{#                         </li>#}
-{#                          <li>#}
-{#                            <div class="media"> <a class="media-left" href="#"> <img src="images/70x70.jpg" alt=""> </a>#}
-{#                              <div class="media-body"> <a class="catg_title" href="#"> Aliquam malesuada diam eget turpis varius</a>#}
-{#                                <div class="sing_commentbox">#}
-{#                                  <p><i class="fa fa-calendar"></i>19 Nov 2045</p>#}
-{#                                  <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>#}
-{#                              </div>#}
-{#                            </div>#}
-{#                         </li>#}
-{#                        </ul>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                  </div>#}
+                  <div class="category_four wow fadeInDown">
+                  <div class="single_category">
+                    <div class="category_title"> <a href="#">Category 4</a></div>
+                    <div class="single_category_inner">
+                      <ul class="catg_nav catg_nav3">
+                        <li>
+                          <div class="catgimg_container"> <a class="catg1_img" href="pages/single_page.html"> <img src="images/292x150.jpg" alt=""> </a></div>
+                          <a class="catg_title" href="pages/single_page.html"> Curabitur ac dictum nisl eu hendrerit ante</a>
+                          <div class="sing_commentbox">
+                            <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+                            <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
+                          <p class="post-summary">Duis erat purus, tincidunt vel ullamcorper ut, consequat tempus nibh. Proin condimentum risus ligula, dignissim mollis tortor hendrerit vel. Aliquam...</p>
+                       </li>
+                      </ul>
+                      <div class="catg3_bottompost wow fadeInDown">
+                        <ul class="catg3_snav">
+                          <li>
+                            <div class="media"> <a class="media-left" href="pages/single_page.html"> <img src="images/70x70.jpg" alt=""> </a>
+                              <div class="media-body"> <a class="catg_title" href="#"> Aliquam malesuada diam eget turpis varius</a>
+                                <div class="sing_commentbox">
+                                  <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+                                  <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
+                              </div>
+                            </div>
+                         </li>
+                          <li>
+                            <div class="media"> <a class="media-left" href="#"> <img src="images/70x70.jpg" alt=""> </a>
+                              <div class="media-body"> <a class="catg_title" href="#"> Aliquam malesuada diam eget turpis varius</a>
+                                <div class="sing_commentbox">
+                                  <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+                                  <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
+                              </div>
+                            </div>
+                         </li>
+                          <li>
+                            <div class="media"> <a class="media-left" href="#"> <img src="images/70x70.jpg" alt=""> </a>
+                              <div class="media-body"> <a class="catg_title" href="#"> Aliquam malesuada diam eget turpis varius</a>
+                                <div class="sing_commentbox">
+                                  <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+                                  <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
+                              </div>
+                            </div>
+                         </li>
+                          <li>
+                            <div class="media"> <a class="media-left" href="#"> <img src="images/70x70.jpg" alt=""> </a>
+                              <div class="media-body"> <a class="catg_title" href="#"> Aliquam malesuada diam eget turpis varius</a>
+                                <div class="sing_commentbox">
+                                  <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+                                  <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
+                              </div>
+                            </div>
+                         </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
 
