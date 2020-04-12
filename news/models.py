@@ -17,6 +17,7 @@ class Category(models.Model):
                                       verbose_name="Created at")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated at")
     title = models.CharField(max_length=255, verbose_name="Title")
+    slug = models.SlugField(max_length=100, blank=False)
 
     class Meta:
         verbose_name = "Category"
