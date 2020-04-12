@@ -46,17 +46,19 @@ def post_list(request, tag_slug=None):
     return render(request, "index.html", context)
 
 
-def list_of_post_by_category(request):
+def list_of_post_by_category(request, category_slug):
     categories = Category.objects.all()
     print(categories)
     post = Post.published.all()
-    postcat = post.filter(category=categories)
-    # print(post)
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        post = post.filter(category=category)
+        # print(post)
     context = {
         'categories': categories,
-        'postcat': postcat,
+        'postcat': post,
     }
-    return render(request, "index.html", context)
+    return render(request, "category.html", context)
 
 
 def archive_view(request):

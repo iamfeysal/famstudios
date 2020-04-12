@@ -6,8 +6,8 @@ urlpatterns = [
     path('', post_list, name='home'),
     re_path(r'^tag/(?P<tag_slug>[-\w]+)/$', post_list,
             name='post_list_by_tag'),
-    path(r'^category/<int:id>', list_of_post_by_category,
-         name='list_of_post_by_category'),
+    re_path(r'^category/(?P<category_slug>[-\w]+)/$', list_of_post_by_category,
+            name='list_of_post_by_category'),
     path('archive/', archive_view, name='archive'),
     path('post/<int:id>', post_detail, name='post_detail'),
     path('search_result/', search_view, name='search')
