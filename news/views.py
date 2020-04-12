@@ -76,7 +76,7 @@ class CategoryListView(ListView):
 class CategoryDetailView(DetailView):
     model = Category
     context_object_name = 'category'
-    template_name = 'posts/post_category.html'
+    template_name = 'category.html'
 
 
 def archive_view(request):
