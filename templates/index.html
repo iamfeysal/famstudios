@@ -55,7 +55,7 @@
           {% for post in posts|slice:"4:10" %}
         <div class="signle_iteam"> <img src="{{ post.image.url }}" alt="">
           <div class="sing_commentbox slider_comntbox">
-            <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
+            <p><i class="fa fa-calendar"></i>{{ post.publish }}</p>
             <a href="#"><i class="fa fa-comments"></i>20 Comments</a></div>
           <a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a>
         </div>
@@ -89,7 +89,7 @@
             </div>
           </div>
         </div>
-{#      {% include 'category.html' %}#}
+      {% include 'category.html' %}
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
           <div class="row">
             <div class="right_bar">
