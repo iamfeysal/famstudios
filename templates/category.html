@@ -1,13 +1,10 @@
-{% load static %}
-
-
-        <div class="col-lg-7 col-md-7 col-sm-8 col-xs-12">
+ <div class="col-lg-7 col-md-7 col-sm-8 col-xs-12">
           <div class="row">
             <div class="middle_bar">
               <div class="single_category wow fadeInDown">
-              {% for postcat in postcat %}
+              {% for category in categories %}
                 <div class="category_title"> <a href="pages/category-archive.html">
-                    {{ postcat.category }}
+                    {{ category.title }}
                 </a>
                 </div>
                   {% endfor %}

@@ -16,9 +16,11 @@ def post_detail(request, id):
 
 def post_list(request, tag_slug=None):
     posts = Post.published.all()
-    # category_list_count = Post.objects.annotate(num_category=Count('category'))
+    categories = Category.objects.all()
+    print(categories)
+    postcat = posts.filter(category=categories)
     # category_list_count = Post.objects.annotate(num_category=Count(
-    # 'category'))
+    #     'category'))
 
     tag = None
 
@@ -41,17 +43,20 @@ def post_list(request, tag_slug=None):
     context = {
         'posts': posts,
         'tag': tag,
+        'postcat': postcat,
+        'categories':categories
         # 'category_list_count': category_list_count,
     }
     return render(request, "index.html", context)
 
 
-def list_of_post_by_category(request, category_slug):
+def list_of_post_by_category(request, slug):
     categories = Category.objects.all()
     print(categories)
     post = Post.published.all()
-    if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
+    post = post.filter(category=categories)
+    if slug:
+        category = get_object_or_404(Category, slug=slug)
         post = post.filter(category=category)
         # print(post)
     context = {
