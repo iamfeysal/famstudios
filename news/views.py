@@ -73,6 +73,12 @@ class CategoryListView(ListView):
         return Post.objects.filter(category_id=self.kwargs.get('pk'))
 
 
+class CategoryDetailView(DetailView):
+    model = Category
+    context_object_name = 'category'
+    template_name = 'posts/post_category.html'
+
+
 def archive_view(request):
     posts = Post.published.all()
     data = {'posts': posts}
