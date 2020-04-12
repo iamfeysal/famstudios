@@ -34,8 +34,9 @@
               </div>
 
               <div class="single_category  wow fadeInDown">
-                  {% for category in categories|slice:"1:4" %}
+
                 <div class="category_title"> <a href="pages/category-archive.html">
+                    {% for category in categories|slice:"1:4" %}
                     {{ category.title }}
                 </a>
                 </div>
