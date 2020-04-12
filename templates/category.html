@@ -4,23 +4,23 @@
             <div class="middle_bar">
               <div class="single_category wow fadeInDown">
                 <div class="category_title"> <a href="pages/category-archive.html">
-                    {% with categories|first as cat %}
-                    {{ cat.title }}
-                    {% endwith %}
+                    {% with categories|first as category %}
+{#                    {% for category in categories %}#}
+                    {{ category.title }}
                 </a>
                 </div>
                 <div class="single_category_inner">
                   <ul class="catg_nav">
-                      {% for post in category.post_set.all %}
+                       {% for product in category.post_set.all%}
                     <li>
                       <div class="catgimg_container"> <a class="catg1_img" href="pages/single_page.html">
-                          <img src="{{ post.image.url }}" alt=""> </a></div>
+                          <img src="{{ product.image.url }}" alt=""> </a></div>
                       <a class="catg_title" href="pages/single_page.html">
-                          {{ post.title }}
+                          {{ product.title }}
                           </a>
                       <div class="sing_commentbox">
                         <p><i class="fa fa-calendar"></i>
-                            {{ post.publish }}</p>
+                            {{ product.publish }}</p>
 {#                        <a href="#"><i class="fa fa-comments">#}
 {#                        </i>20 Comments#}
 {#                        </a>#}
@@ -28,6 +28,8 @@
                    </li>
                   </ul>
                     {% endfor %}
+{#                    {% endfor %}#}
+                    {% endwith %}
                 </div>
               </div>
               <div class="category_three_fourarea  wow fadeInDown">
