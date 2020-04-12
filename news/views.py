@@ -17,8 +17,7 @@ def post_detail(request, id):
 def post_list(request, tag_slug=None):
     posts = Post.published.all()
     categories = Category.objects.all()
-    postcat = posts.filter(category=categories)
-    print(postcat)
+    # postcat = posts.filter(category=categories)
     # category_list_count = Post.objects.annotate(num_category=Count(
     #     'category'))
 
@@ -43,7 +42,7 @@ def post_list(request, tag_slug=None):
     context = {
         'posts': posts,
         'tag': tag,
-        'postcat': postcat,
+        # 'postcat': postcat,
         'categories': categories
         # 'category_list_count': category_list_count,
     }
