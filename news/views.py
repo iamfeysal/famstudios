@@ -50,12 +50,13 @@ def list_of_post_by_category(request):
     categories = Category.objects.all()
     print(categories)
     post = Post.published.all()
-    post = post.filter(category=categories)
+    postcat = post.filter(category=categories)
+    # print(post)
     context = {
         'categories': categories,
-        'post': post,
+        'postcat': postcat,
     }
-    return render(request, "category.html", context)
+    return render(request, "index.html", context)
 
 
 def archive_view(request):

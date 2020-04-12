@@ -5,23 +5,20 @@
           <div class="row">
             <div class="middle_bar">
               <div class="single_category wow fadeInDown">
+              {% for postcat in postcat %}
                 <div class="category_title"> <a href="pages/category-archive.html">
-{#                    {%  with categories|first as cat %}#}
-                    {% for category in categories %}
-                    {{ cat.title}}
-                    {% endfor %}
-
-{#                    {{ cat.title}}#}
-{#                      {% endwith %}#}
+                    {{ postcat.category }}
                 </a>
                 </div>
+                  {% endfor %}
                 <div class="single_category_inner">
                   <ul class="catg_nav">
-                      {% for post in category_list_count %}
+                      {% for post in postcat %}
                     <li>
-                      <div class="catgimg_container"> <a class="catg1_img" href="pages/single_page.html"> <img src="images/310x150.jpg" alt=""> </a></div>
+                      <div class="catgimg_container"> <a class="catg1_img" href="pages/single_page.html"> 
+                          <img src="images/310x150.jpg" alt=""> </a></div>
                       <a class="catg_title" href="pages/single_page.html">
-                          {{ post.category.post_set.all }}
+                          {{ post.title }}
                           </a>
                       <div class="sing_commentbox">
                         <p><i class="fa fa-calendar"></i>19 Nov 2045</p>
@@ -30,8 +27,8 @@
                         </a>
                       </div>
                    </li>
-                      {% endfor %}
                   </ul>
+                    {% endfor %}
                 </div>
               </div>
               <div class="single_category  wow fadeInDown">
