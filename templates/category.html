@@ -21,9 +21,10 @@
                       <div class="sing_commentbox">
                         <p><i class="fa fa-calendar"></i>
                             {{ product.publish }}</p>
-{#                        <a href="#"><i class="fa fa-comments">#}
-{#                        </i>20 Comments#}
-{#                        </a>#}
+                        <a href="#"><i class="fa fa-comments">
+                        </i>20 Comments
+                        </a>
+                          <p class="post-summary">{{ product.description|safe }}</p>
                       </div>
                    </li>
                           {% endfor %}
