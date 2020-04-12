@@ -65,17 +65,19 @@ def post_list(request, tag_slug=None):
 #     return render(request, "category.html", context)
 
 class CategoryListView(ListView):
-    model = Post
+    # model = Post
+    model = Category
     template_name = 'category.html'
+    context_object_name = 'category'
 
     def get_queryset(self):
         return Post.objects.filter(category_id=self.kwargs.get('pk'))
 
 
-class CategoryDetailView(DetailView):
-    model = Category
-    context_object_name = 'category'
-    template_name = 'category.html'
+# class CategoryDetailView(DetailView):
+#     model = Category
+#     context_object_name = 'category'
+#     template_name = 'category.html'
 
 
 def archive_view(request):
