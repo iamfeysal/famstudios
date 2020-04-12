@@ -17,8 +17,8 @@ def post_detail(request, id):
 def post_list(request, tag_slug=None):
     posts = Post.published.all()
     categories = Category.objects.all()
-    print(categories)
     postcat = posts.filter(category=categories)
+    print(postcat)
     # category_list_count = Post.objects.annotate(num_category=Count(
     #     'category'))
 
@@ -44,26 +44,33 @@ def post_list(request, tag_slug=None):
         'posts': posts,
         'tag': tag,
         'postcat': postcat,
-        'categories':categories
+        'categories': categories
         # 'category_list_count': category_list_count,
     }
     return render(request, "index.html", context)
 
 
-def list_of_post_by_category(request, slug):
-    categories = Category.objects.all()
-    print(categories)
-    post = Post.published.all()
-    post = post.filter(category=categories)
-    if slug:
-        category = get_object_or_404(Category, slug=slug)
-        post = post.filter(category=category)
-        # print(post)
-    context = {
-        'categories': categories,
-        'postcat': post,
-    }
-    return render(request, "category.html", context)
+# def list_of_post_by_category(request, slug):
+#     categories = Category.objects.all()
+#     print(categories)
+#     post = Post.published.all()
+#     post = post.filter(category=categories)
+#     if slug:
+#         category = get_object_or_404(Category, slug=slug)
+#         post = post.filter(category=category)
+#         # print(post)
+#     context = {
+#         'categories': categories,
+#         'postcat': post,
+#     }
+#     return render(request, "category.html", context)
+
+class CategoryListView(ListView):
+    model = Post
+    template_name = 'category.html'
+
+    def get_queryset(self):
+        return Post.objects.filter(category_id=self.kwargs.get('pk'))
 
 
 def archive_view(request):
