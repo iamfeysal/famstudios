@@ -64,20 +64,17 @@ def post_list(request, tag_slug=None):
 #     }
 #     return render(request, "category.html", context)
 
-class CategoryListView(ListView):
-    # model = Post
-    model = Category
-    template_name = 'category.html'
-    context_object_name = 'category'
-
-    def get_queryset(self):
-        return Post.objects.filter(category_id=self.kwargs.get('pk'))
-
-
-# class CategoryDetailView(DetailView):
-#     model = Category
-#     context_object_name = 'category'
-#     template_name = 'category.html'
+def categories_m(request):
+    query_Set = Category.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(query_Set, 20)
+    try:
+        cat = paginator.page(page)
+    except PageNotAnInteger:
+        cat = paginator.page(1)
+    except EmptyPage:
+        cat = paginator.page(paginator.num_pages)
+    return render(request, 'category.html', {'categories': cat})
 
 
 def archive_view(request):
