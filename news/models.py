@@ -28,8 +28,7 @@ class Category(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('postcategory', args=[self.title, self.slug],
-                       kwargs={'pk': self.pk})
+        return reverse('postcategory', args=[self.title, self.slug]
 
 
 class Post(models.Model):
